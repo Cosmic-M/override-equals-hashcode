@@ -1,4 +1,3 @@
-import java.util.Objects;
 
 public class Rectangle {
   private Integer width;
@@ -21,8 +20,13 @@ public class Rectangle {
     }
     if (this.getClass().equals(object.getClass())) {
       Rectangle rectangle = (Rectangle) object;
-      return  Objects.equals(this.width, rectangle.width) && Objects.equals(this.length, rectangle.length)
-              && Objects.equals(this.color, rectangle.color);
+      boolean widthFieldsEquals = this.width != null ?
+              this.width.equals(rectangle.getWidth()) : rectangle.getWidth() == null;
+      boolean lengthFieldsEquals = this.length != null ?
+              this.length.equals(rectangle.getLength()) : rectangle.getLength() == null;
+      boolean colorFieldsEquals = this.color != null ?
+              this.color.equals(rectangle.getColor()) : rectangle.getColor() == null;
+      return  widthFieldsEquals && lengthFieldsEquals && colorFieldsEquals;
     }
     return false;
   }
